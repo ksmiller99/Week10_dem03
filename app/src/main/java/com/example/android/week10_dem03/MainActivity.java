@@ -1,6 +1,8 @@
 package com.example.android.week10_dem03;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -9,16 +11,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     MyPanel panel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        panel = new MyPanel(this);
-
-        setContentView(panel);
+       panel = (MyPanel) findViewById(R.id.pnl);
 
         panel.setOnTouchListener(new View.OnTouchListener() {
 
@@ -41,12 +42,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });}
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+    public void setRect(View v){
+        SharedValuesXY.drawingMode = "RECT";
     }
+    public void setCirc(View v){
+        SharedValuesXY.drawingMode = "CIRC";
+    }
+    public void setLine(View v){
+        SharedValuesXY.drawingMode = "LINE";
+    }
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+ //       setSupportActionBar(toolbar);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
